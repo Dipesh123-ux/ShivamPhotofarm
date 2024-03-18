@@ -1,0 +1,97 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: grey;
+  border-radius: 5px;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #4a90e2 transparent;
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "Stegal";
+  src: url("/fonts/Stegal-Re.otf") format("opentype");
+}
+@font-face {
+  font-family: "Sang";
+  src: url("/fonts/SangBleuKingdom-Regular.otf") format("opentype");
+}
+
+.font-ste {
+  font-family: "Stegal", sans-serif;
+}
+
+.font-sang {
+  font-family: "Sang", sans-serif;
+}
+
+.placeholder-black::placeholder {
+  color: black;
+}
+
+#mobile{
+  display : none;
+  z-index: 50;
+}
+
+#desktop{
+  display : block;
+}
+
+
+
+.modal-overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.modal-content {
+  max-height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  outline: none;
+  z-index: 1000;
+  width: 70%;
+}
+
+.videContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+}
+
+@media screen and (max-width: 678px){
+  #mobile{
+   display: block;
+  }
+  #desktop{
+   display : none;
+ }
+ .videContainer{
+   width: 350px;
+ }
+}
