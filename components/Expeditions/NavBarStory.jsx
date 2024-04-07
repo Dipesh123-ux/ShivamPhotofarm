@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { getStoryById } from '@/app/actions/getStories'
 
 
-const NavbarStory = ({storyId}) => {
+const NavBarStory = ({storyId}) => {
 
 
     const router = useRouter()
@@ -41,7 +41,7 @@ const NavbarStory = ({storyId}) => {
   )
 }
 
-export default NavbarStory
+export default NavBarStory
 
 
 const SaveStoryPopUp = ({storyId,PublishStory,setShowPopUp}) => {
