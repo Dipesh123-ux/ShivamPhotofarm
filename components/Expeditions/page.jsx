@@ -1,6 +1,6 @@
 import React from 'react'
 import NewStory from './NewStory'
-import NavbarStory from './NavbarStory'
+import NavbarStory from './NavBarStory'
 import { getStoryById } from '@/app/actions/getStories'
 
 
