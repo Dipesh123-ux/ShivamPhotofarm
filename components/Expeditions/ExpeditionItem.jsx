@@ -52,7 +52,7 @@ const ExpeditionItem = ({ key, story, deleteButton = false,onDelete }) => {
             />
             <div className="absolute inset-0 flex flex-col justify-center items-center">
               <h2 className="text-2xl font-semibold text-white mb-4">
-                {H1Element}
+                {story?.title}
               </h2>
               <div className="bg-white text-black py-2 px-4 rounded-full text-sm font-semibold transition duration-300 hover:bg-gray-300">
                 View more

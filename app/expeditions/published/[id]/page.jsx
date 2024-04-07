@@ -11,7 +11,7 @@ const page = async ({ params }) => {
   }
 
   return (
-    <div>
+    <div className="">
         <SingleExpedition PublishedStory={PublishedStory.response} />
     </div>
   )

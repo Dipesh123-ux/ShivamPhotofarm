@@ -18,6 +18,7 @@ import hljs from "highlight.js";
 import "highlight.js/styles/github.css";
 import axios from "axios";
 import { getStoryById } from "@/app/actions/getStories";
+import Compressor from 'compressorjs';
 
 const NewStory = ({ storyId, Storycontent }) => {
   const contentEditabeRef = useRef(null);
@@ -88,9 +89,17 @@ const NewStory = ({ storyId, Storycontent }) => {
       setImages((prevImages) => [...prevImages, ...newImages]);
 
       const wrapperDiv = document.createElement("div");
-      wrapperDiv.style.display = "flex";
-      wrapperDiv.style.flexWrap = "wrap";
-      wrapperDiv.classList.add("space-x-2");
+      wrapperDiv.style.display = 'grid';
+      wrapperDiv.style. columnGap = '15px';
+      if(newImages.length === 1){
+          wrapperDiv.style.gridTemplateColumns = '1fr';
+      }
+      else if(newImages.length === 2 ){
+        wrapperDiv.style.gridTemplateColumns = '1fr 1fr';
+      }
+      else{
+        wrapperDiv.style.gridTemplateColumns = '1fr 1fr 1fr';
+      }
 
       const Images = newImages.map((image) => {
         return (
@@ -140,6 +149,7 @@ const NewStory = ({ storyId, Storycontent }) => {
       handleSave();
     }
   };
+  
 
   useEffect(() => {
     const handleInput = () => {
@@ -302,23 +312,32 @@ const Divider = () => {
 const ImageComp = ({ imageUrl, file, handleSave }) => {
   const [currentImageUrl, setCurrentImageUrl] = useState(imageUrl);
 
-  const updateImageUrl = async () => {
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-      await ImageUpload(formData).then((SecureImageUrl) =>
-        setCurrentImageUrl(SecureImageUrl)
-      );
-    } catch (error) {
-      console.log("Error uploading the image", error);
-    }
+  const compressAndUploadImage = async (file) => {
+    new Compressor(file, {
+      quality: 0.6, // Adjust the image quality as needed
+      maxWidth: 800, // Set the maximum width of the compressed image
+      maxHeight: 600, // Set the maximum height of the compressed image
+      success(result) {
+        console.log(result,"result");
+        const formData = new FormData();
+        formData.append("file", result);
+
+        // Call your ImageUpload function with the compressed image
+        ImageUpload(formData).then((SecureImageUrl) => {
+          setCurrentImageUrl(SecureImageUrl);
+          handleSave();
+        });
+      },
+      error(error) {
+        console.log("Error compressing the image", error);
+      },
+    });
+
   };
 
   useEffect(() => {
-    updateImageUrl().then(() => {
-      handleSave();
-    });
-  }, [imageUrl]);
+    compressAndUploadImage(file);
+  }, [file]);
 
   return (
     <div className="mx-auto">
@@ -326,13 +345,9 @@ const ImageComp = ({ imageUrl, file, handleSave }) => {
         <img
           src={currentImageUrl}
           alt="Image"
-          className="max-w-full h-[500px]"
+          className="gallery-box"
         />
-        <div className="text-center text-sm max-w-md mx-auto">
-          <p data-p-placeholder="Type caption for your image"></p>
-        </div>
       </div>
-      <p data-p-placeholder="..."></p>
     </div>
   );
 };

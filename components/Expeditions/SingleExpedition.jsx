@@ -28,17 +28,13 @@ const SingleExpedition = ({ PublishedStory }) => {
   );
 
   return (
-    <>
-      <div>
-        <h1 className=" font-bold my-8 text-center font-sang text-wrap text-3xl">
-          {h1elemntwithouttag}
-        </h1>
-        <div
-          className="prose my-5 font-ste mx-3 md:mx-auto flex flex-col justify-center items-center"
-          dangerouslySetInnerHTML={{ __html: finalSanitizedContent }}
-        ></div>
-      </div>
-    </>
+    <div className="w-full">
+      <div
+        style={{ flexDirection: "column", display: "flex" }}
+        className="mx-auto my-5 font-ste w-3/4"
+        dangerouslySetInnerHTML={{ __html: finalSanitizedContent }}
+      ></div>
+    </div>
   );
 };
 
