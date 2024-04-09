@@ -15,11 +15,13 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #4a90e2 transparent;
   overflow-x: hidden;
+  background-color: #e7e6e1;
+  color: #3c3c3b;
 }
 
 @font-face {
-  font-family: "Stegal";
-  src: url("/fonts/Stegal-Re.otf") format("opentype");
+  font-family: "Steagal";
+  src: url("/fonts/Steagal.otf") format("opentype");
 }
 @font-face {
   font-family: "Sang";
@@ -27,7 +29,8 @@ body {
 }
 
 .font-ste {
-  font-family: "Stegal", sans-serif;
+  font-family: "Steagal", sans-serif;
+  line-height: 2;
 }
 
 .font-sang {
@@ -81,7 +84,29 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: auto;
+  width: "200px";
+}
+
+.videContainer>iframe{
+  height: 500px;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow:8px 8px 10px rgba(0, 0, 0, 0.5);
+}
+
+.gallery-box{
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 1%;
+  object-fit: cover;
+  object-position: 50% 50%;
+  transition: 0.5s ease-in-out;
+  filter: brightness(70%);
+  animation: fade-in 1.2s cubic-bezier(0.39, 0.575, 0.565, 1) both;
+}
+
+.gallery-box:hover {
+  filter: brightness(100%);
 }
 
 @media screen and (max-width: 678px){

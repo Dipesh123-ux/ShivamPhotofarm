@@ -2,7 +2,9 @@ import { NextResponse, NextRequest } from "next/server";
 import prisma from "@/prismadb"
 
 export async function PATCH(request) {
-    const {storyId } = await request.json()
+    const {storyId ,title} = await request.json()
+
+    console.log(title,storyId)
 
     if(!storyId){
         throw new Error ('No storyId was found')
@@ -25,6 +27,7 @@ export async function PATCH(request) {
             },
             data:{
                 publish:true,
+                title
             }
         })
         return NextResponse.json(updatedStory)
