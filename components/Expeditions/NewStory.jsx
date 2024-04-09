@@ -314,7 +314,7 @@ const ImageComp = ({ imageUrl, file, handleSave }) => {
 
   const compressAndUploadImage = async (file) => {
     new Compressor(file, {
-      quality: 0.6, // Adjust the image quality as needed
+      quality: 0.8, // Adjust the image quality as needed
       maxWidth: 800, // Set the maximum width of the compressed image
       maxHeight: 600, // Set the maximum height of the compressed image
       success(result) {
